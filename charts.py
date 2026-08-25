@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.ticker import PercentFormatter
 
 # Chart 1: Bar chart for top passers
 df1 = pd.read_csv('data/topPassers.csv')
@@ -34,7 +35,7 @@ plt.figure()
 
 df3 = pd.read_csv('data/topTdScorers.csv')
 df3['full_name'] = df3['FIRST_NAME'] + ' ' + df3['LAST_NAME']
-plt.bar(df3['full_name'], df3['total_rush_yd'])
+plt.bar(df3['full_name'], df3['total_td'])
 plt.xlabel('Player')
 plt.ylabel('Total Touchdowns Yards')
 plt.title('Top 10 Touchdown Scorers')
@@ -46,13 +47,38 @@ plt.show()
 #Chart 4: Horizontal bar chart for most team wins
 plt.figure()   
 
-df3 = pd.read_csv('data/topTdScorers.csv')
-df3['full_name'] = df3['FIRST_NAME'] + ' ' + df3['LAST_NAME']
-plt.bar(df3['full_name'], df3['total_rush_yd'])
-plt.xlabel('Player')
-plt.ylabel('Total Touchdowns Yards')
-plt.title('Top 10 Touchdown Scorers')
-plt.xticks(rotation=45, ha='right')
+df4 = pd.read_csv('data/mostWins.csv')
+plt.barh(df4['team'], df4['total_wins'])
+plt.xlabel('Total Wins')
+plt.ylabel('Team')
+plt.title('Top 10 Teams with most wins')
 plt.tight_layout()
-plt.savefig('topTdScorersChart.png')
-plt.show()
+plt.savefig('mostWinsChart.png')
+plt.show() 
+
+#Chart 5: Horizontal bar chart for best team win percentage
+plt.figure()   
+
+df5 = pd.read_csv('data/bestWinPercentage.csv')
+df5 ['win_percentage'] = df5['total_wins']/df5['total_games']
+plt.barh(df5['team'], df5['win_percentage'])
+plt.xlabel('Win Percentage')
+plt.ylabel('Team')
+plt.title('Top 10 Teams with the best win percentage')
+plt.gca().xaxis.set_major_formatter(PercentFormatter(1))
+plt.tight_layout()
+plt.savefig('bestWinPercentageChart.png')
+plt.show() 
+
+#Chart 6: Line chart for most passing seasons
+plt.figure()   
+
+df6 = pd.read_csv('data/topPassingYears.csv')
+df6 = df6.sort_values('YEAR')
+plt.plot(df6['YEAR'], df6['total_pass_yards'])
+plt.xlabel('Year')
+plt.ylabel('Passing yards')
+plt.title('Best Passing Seasons')
+plt.tight_layout()
+plt.savefig('topPassingYearsChart.png')
+plt.show() 
