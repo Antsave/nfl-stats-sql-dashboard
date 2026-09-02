@@ -82,3 +82,18 @@ plt.title('Best Passing Seasons')
 plt.tight_layout()
 plt.savefig('topPassingYearsChart.png')
 plt.show() 
+
+plt.figure()
+
+df9 = pd.read_csv('data/teamTotalOffenseVsWinPct.csv')
+
+plt.scatter(df9['total_offense_yards'], df9['win_percentage'])
+plt.xlabel('Total Offensive Yards (Passing + Rushing)')
+plt.ylabel('Win Percentage')
+plt.title('Does a Dominant Offense Predict Winning?')
+plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
+plt.tight_layout()
+for i in range(len(df9)):
+    plt.annotate(df9['team'][i], (df9['total_offense_yards'][i], df9['win_percentage'][i]), fontsize=8)
+plt.savefig('offenseVsWinPctChart.png')
+plt.show()
