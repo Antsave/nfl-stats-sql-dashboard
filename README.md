@@ -55,7 +55,7 @@ NFL_Dashboard/
 
 ## Data source
 
-[nfl-database](https://github.com/bdetweiler/nfl-database) — games since 1970, detailed player stats since 2009.
+[nfl-database](https://github.com/bdetweiler/nfl-database) — games since 1970, detailed player stats since 2015.
 
 ## Running it yourself
 
